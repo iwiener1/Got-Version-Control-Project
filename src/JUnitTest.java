@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.*;
 
-class IndexTest {
+class JUnitTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -45,13 +45,8 @@ class IndexTest {
 		for(scanned = ""; !scanned.equals("Test.txt : 8f0220cbd7ba37cd11f67dbd2bca2899e4368e80") && sc.hasNextLine(); scanned = sc.nextLine());
 		sc.close();
 		assertTrue(scanned.equals("Test.txt : 8f0220cbd7ba37cd11f67dbd2bca2899e4368e80"));
-		assertTrue(Files.exists(Paths.get("/objects/8f0220cbd7ba37cd11f67dbd2bca2899e4368e80")));
-		Scanner scWr = new Scanner("8f0220cbd7ba37cd11f67dbd2bca2899e4368e80");
-		for(scanned = scWr.nextLine(); scWr.hasNextLine(); scanned = scanned+"\n"+scWr.nextLine());
-		scWr.close();
-		System.out.println("Written in file: "+ scanned);
-		//
-		assertTrue(scanned.equals("This is a test."));
+		
+		
 	}
 	
 	@Test
@@ -64,6 +59,19 @@ class IndexTest {
 		for(scanned = ""; !scanned.equals("Test.txt : 8f0220cbd7ba37cd11f67dbd2bca2899e4368e80") && sc.hasNextLine(); scanned = sc.nextLine());
 		sc.close();
 		assertFalse(scanned.equals("Test.txt : 8f0220cbd7ba37cd11f67dbd2bca2899e4368e80"));
+	}
+	
+	@Test
+	void testBlob() throws IOException{
+		String scanned;
+		Blob testBlob = new Blob("Test.txt");
+		assertTrue(Files.exists(Paths.get("/objects/8f0220cbd7ba37cd11f67dbd2bca2899e4368e80")));
+		Scanner scWr = new Scanner("8f0220cbd7ba37cd11f67dbd2bca2899e4368e80");
+		for(scanned = scWr.nextLine(); scWr.hasNextLine(); scanned = scanned+"\n"+scWr.nextLine());
+		scWr.close();
+		System.out.println("Written in file: "+ scanned);
+		//
+		assertTrue(scanned.equals("This is a test."));
 	}
 
 }
